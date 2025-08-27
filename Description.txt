@@ -1,1 +1,0 @@
-Dynamic Programming is a technique used to solve a certain set of problems.
