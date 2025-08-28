@@ -13,7 +13,7 @@ public class minCostClimbingStairs
     *   4- Order of computation
     *       -Buttom-Up
     *   5- Location of the answer
-    *       Math.min(F[n - 1], F[n - 2]), where n is the length of cost array.
+    *       Math.min(F[n - 1], F[n - 2]), where n is the number of staris.
     *   ========================    complexities    ========================
     *   Time Complexity: O(n)
     *   Space Complexity: O(n)
