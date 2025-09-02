@@ -1,2 +1,2 @@
 # Dynamic-Programming
-Dynamic Programming Notes and Codes.
+LeetCode Dynamic Programming Problems.
