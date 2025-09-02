@@ -13,7 +13,7 @@
      *       F(n - 1), where n is the length of nums array.
      *   ========================    complexities    ========================
      *   Time Complexity: O(n)
-     *   Space Complexity: O(n)
+     *   Space Complexity: O(n^2)
      * */
 
     import java.util.Arrays;
