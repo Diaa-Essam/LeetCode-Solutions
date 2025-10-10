@@ -1,2 +1,1 @@
-# Dynamic-Programming
-LeetCode Dynamic Programming Problems.
+# Just Having Fun :)
