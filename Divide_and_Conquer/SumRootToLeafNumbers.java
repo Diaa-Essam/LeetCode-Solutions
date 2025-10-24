@@ -1,6 +1,6 @@
 public class SumRootToLeafNumbers
 {  
-     public int sumNumbers(TreeNode root)
+    public int sumNumbers(TreeNode root)
     {
         return dfs(root, 0); 
     }
