@@ -1,6 +1,7 @@
 /**
  * Approach: Binary Search
  * Search space: 1 to x (square root lies in this range for x > 0)
+ * We can edit this to be "Search Space lies in between 1 -> x / 2"
  * 
  * How it works:
  * - If mid <= x / mid, then mid could be the answer or we might find bigger valid number
