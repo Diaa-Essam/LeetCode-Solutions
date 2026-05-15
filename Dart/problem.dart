@@ -60,3 +60,38 @@ bool isNonDecreasing(List<int> nums) {
 
   return true;
 }
+
+// 3637.Trionic Array I
+bool isTrionic(List<int> nums) {
+  for (int i = 0; i < nums.length; i++) {
+    for (int j = i; j < nums.length; j++) {
+      if (isIncreasing(nums.sublist(0, i + 1)) &&
+          isNonIncreasing(nums.sublist(i, j + 1)) &&
+          isIncreasing(nums.sublist(j, nums.length)))
+        return true;
+    }
+  }
+  return false;
+}
+
+bool isIncreasing(List<int> nums) {
+  if (nums.length < 2)
+    return false; // Need at least 2 elements for strictly increasing
+  for (int i = 0; i < nums.length - 1; i++) {
+    if (nums[i] >= nums[i + 1]) {
+      return false;
+    }
+  }
+  return true;
+}
+
+bool isNonIncreasing(List<int> nums) {
+  if (nums.length < 2)
+    return false; // Need at least 2 elements for strictly increasing
+  for (int i = 0; i < nums.length - 1; i++) {
+    if (nums[i] <= nums[i + 1]) {
+      return false;
+    }
+  }
+  return true;
+}
