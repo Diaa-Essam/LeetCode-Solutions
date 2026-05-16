@@ -95,3 +95,29 @@ bool isNonIncreasing(List<int> nums) {
   }
   return true;
 }
+
+// 3379.Transformed Array
+
+List<int> constructTransformedArray(List<int> nums) {
+  List<int> result = [];
+  int n = nums.length;
+
+  for (int i = 0; i < n; i++) {
+    int step = nums[i];
+    int newIndex = i;
+
+    // if (step > 0) {
+    //   newIndex = (step + i) % n;
+    // } else if (step < 0) {
+    //   newIndex = (step + i) % n;
+    //   if (newIndex < 0) newIndex += n;
+    // } else {
+    //   step = i;
+    // }
+    newIndex = ((step + i) % n + n) % n;
+
+    result.add(nums[newIndex]);
+  }
+
+  return result;
+}
