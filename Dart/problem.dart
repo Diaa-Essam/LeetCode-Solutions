@@ -121,3 +121,12 @@ List<int> constructTransformedArray(List<int> nums) {
 
   return result;
 }
+
+// 190. Reverse Bits
+int reverseBits(int n) {
+  String binaryData = n.toRadixString(2).padLeft(32, '0');
+
+  String reversed = binaryData.split('').reversed.join('');
+
+  return int.parse(reversed, radix: 2);
+}
