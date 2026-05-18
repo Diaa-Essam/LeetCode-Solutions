@@ -105,15 +105,6 @@ List<int> constructTransformedArray(List<int> nums) {
   for (int i = 0; i < n; i++) {
     int step = nums[i];
     int newIndex = i;
-
-    // if (step > 0) {
-    //   newIndex = (step + i) % n;
-    // } else if (step < 0) {
-    //   newIndex = (step + i) % n;
-    //   if (newIndex < 0) newIndex += n;
-    // } else {
-    //   step = i;
-    // }
     newIndex = ((step + i) % n + n) % n;
 
     result.add(nums[newIndex]);
@@ -129,4 +120,24 @@ int reverseBits(int n) {
   String reversed = binaryData.split('').reversed.join('');
 
   return int.parse(reversed, radix: 2);
+}
+
+/*
+  191.Number Of 1 Bits
+
+  Approach: Is checking the last bit if it's one we increament the counter else nothing and after that we 
+  shift right to get rid off this bit.
+  Loop until n > 0.
+
+  Time: O(32) --> O(1)
+  Space: O(1) 
+ */
+int hammingWeight(int n) {
+  int count = 0;
+
+  while (n > 0) {
+    count += n & 1;
+    n = n >> 1;
+  }
+  return count;
 }
