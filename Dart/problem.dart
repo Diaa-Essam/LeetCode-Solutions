@@ -141,3 +141,28 @@ int hammingWeight(int n) {
   }
   return count;
 }
+
+/*
+  2540. Minimum Common Value
+
+  Approach: Using two pointers 'i' for the first list and 'j' for the second one.
+  if the two pointer point to the same value, just retun it, but if the value 
+  under the 'i' is greater than  the value under the 'j' we should move j right 
+  and so on until the loop ends if we didn't find a value to return we return -1.
+
+  Time: O(m + n), where m = nums1.length, n = nums2.length
+  Space: O(1)
+ */
+int getCommon(List<int> nums1, List<int> nums2) {
+  int i = 0, j = 0;
+  while (i < nums1.length && j < nums2.length) {
+    if (nums1[i] == nums2[j]) {
+      return nums1[i];
+    } else if (nums1[i] < nums2[j]) {
+      i++;
+    } else {
+      j++;
+    }
+  }
+  return -1;
+}
