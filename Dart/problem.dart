@@ -175,7 +175,7 @@ int getCommon(List<int> nums1, List<int> nums2) {
   and check if two adjacent bits have the same bit we return false, if all things are right we return ture;
 
   Time: O(32) --> O(1)
-  Space: O(1)
+  Space: O(32) -> O(1)
 
  */
 
