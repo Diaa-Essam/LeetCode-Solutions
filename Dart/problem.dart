@@ -1,4 +1,6 @@
 //2553. Separate the Digits in an Array
+import 'dart:ffi';
+
 List<int> separateDigits(List<int> nums) {
   List<int> result = [];
   for (int i = 0; i < nums.length; i++) {
@@ -143,7 +145,7 @@ int hammingWeight(int n) {
 }
 
 /*
-  2540. Minimum Common Value
+  2540.Minimum Common Value
 
   Approach: Using two pointers 'i' for the first list and 'j' for the second one.
   if the two pointer point to the same value, just retun it, but if the value 
@@ -165,4 +167,25 @@ int getCommon(List<int> nums1, List<int> nums2) {
     }
   }
   return -1;
+}
+
+/*
+  693. Binary Number with Alternating Bits
+  Appraoch: Getting the bit representaion for the given number 'n' as a string, 
+  and check if two adjacent bits have the same bit we return false, if all things are right we return ture;
+
+  Time: O(32) --> O(1)
+  Space: O(1)
+
+ */
+
+bool hasAlternatingBits(int n) {
+  String str = n.toRadixString(2);
+
+  for (int i = 1; i < str.length; i++) {
+    if (str[i] == str[i - 1]) {
+      return false;
+    }
+  }
+  return true;
 }
