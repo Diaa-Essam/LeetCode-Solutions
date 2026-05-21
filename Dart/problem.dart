@@ -189,3 +189,40 @@ bool hasAlternatingBits(int n) {
   }
   return true;
 }
+
+/*
+  762.Prime Number Of Set Bits in Binary Representation
+
+
+  Thought Process: Looping through the numbers from left to right both included using a counter 'i', 
+  get the number of bits for the current value of 'i' and if it's prime we increment the result value by 1.
+
+  leverging the fact that "1 <= left <= right <= 10^6"
+  so the binary representation in the worst case will be of 20 bits, now can make a set of the prime numbers from 0 to 20 easily for optimization puroposes.
+  Set<int> primes = {2, 3, 5, 7, 11, 13, 17, 19};
+
+  Time: O(20 * n) -> O(n), where n is (right  - left)
+  Space: O(1)
+ */
+
+int countPrimeSetBits(int left, int right) {
+  int result = 0;
+  Set<int> primes = {2, 3, 5, 7, 11, 13, 17, 19};
+
+  for (int i = left; i <= right; i++) {
+    int bits = countSetBits(i);
+    if (primes.contains(bits)) {
+      result++;
+    }
+  }
+  return result;
+}
+
+int countSetBits(int n) {
+  int count = 0;
+  while (n > 0) {
+    count += n & 1;
+    n = n >> 1;
+  }
+  return count;
+}
