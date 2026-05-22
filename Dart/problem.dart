@@ -1,5 +1,6 @@
 //2553. Separate the Digits in an Array
-import 'dart:ffi';
+
+import 'dart:math';
 
 List<int> separateDigits(List<int> nums) {
   List<int> result = [];
@@ -198,7 +199,7 @@ bool hasAlternatingBits(int n) {
   get the number of bits for the current value of 'i' and if it's prime we increment the result value by 1.
 
   leverging the fact that "1 <= left <= right <= 10^6"
-  so the binary representation in the worst case will be of 20 bits, now can make a set of the prime numbers from 0 to 20 easily for optimization puroposes.
+  so the binary representation in the worst case will be of 20 bits, now can make a set of the prime numbers from 0 to 20 easily for optimization purposes.
   Set<int> primes = {2, 3, 5, 7, 11, 13, 17, 19};
 
   Time: O(20 * n) -> O(n), where n is (right  - left)
@@ -225,4 +226,33 @@ int countSetBits(int n) {
     n = n >> 1;
   }
   return count;
+}
+
+/*
+868. Binary Gap
+
+Thought Process: converting the given number into a string of it's binary representation,
+looping through these bits whenever you find '1' start another loop to find the position of the next one and store the differece of the positions between those two,
+return the maxGap at the end. 
+
+Time: O(n^2), which is negligable. max value of str.length = 32 bits 
+Space: O(1)
+ */
+
+int binaryGap(int n) {
+  int maxGap = 0;
+
+  String str = n.toRadixString(2);
+  for (int i = 0; i < str.length; i++) {
+    if (str[i] == '1') {
+      for (int j = i + 1; j < str.length; j++) {
+        if (str[j] != '0') {
+          maxGap = max(maxGap, j - i);
+          break;
+        }
+      }
+    }
+  }
+
+  return maxGap;
 }
