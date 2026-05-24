@@ -276,3 +276,25 @@ bool check(List<int> nums) {
 
   return drops <= 1;
 }
+
+/*
+2124.Check if All A's Appears Before All B's
+
+Thought Process: Loop through the given string whenever you find 'b', run other loop to find if there other element after that index with character 'a'
+
+Time: O(n^2), worst case when all elements are b's.
+Space: O(1)
+ */
+
+bool checkString(String s) {
+  for (int i = 0; i < s.length; i++) {
+    if (s[i] == 'b') {
+      for (int j = i + 1; j < s.length; j++) {
+        if (s[j] == 'a') {
+          return false;
+        }
+      }
+    }
+  }
+  return true;
+}
