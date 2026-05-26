@@ -298,3 +298,126 @@ bool checkString(String s) {
   }
   return true;
 }
+
+int numSpecial(List<List<int>> mat) {
+  int result = 0;
+
+  for (int i = 0; i < mat.length; i++) {
+    for (int j = 0; j < mat[0].length; j++) {
+      if (mat[i][i] == 1 && ckeckPosition(mat, i, j)) {
+        result++;
+      }
+    }
+  }
+  return result;
+}
+
+bool ckeckPosition(List<List<int>> mat, int row, int col) {
+  int numberOfOnes = 0;
+  for (int j = 0; j < mat[0].length; j++) {
+    if (mat[row][j] == 1) {
+      numberOfOnes++;
+    }
+  }
+
+  for (int i = 0; i < mat.length; i++) {
+    if (mat[i][col] == 1) {
+      numberOfOnes++;
+    }
+  }
+  return numberOfOnes == 2;
+}
+
+/*
+  2482.Difference Between Ones and Zeros in Row and Column
+  
+  Time: O(m×n×(m+n)) >> very slow for large data sets
+  space: O(m*n)
+
+ */
+// Gives TLE, so precomute number of ones of
+// each row and put it in an array and precompute
+// number of 1 in each column and put it in an array.
+
+List<List<int>> onesMinusZeros2(List<List<int>> grid) {
+  int m = grid.length;
+  int n = grid[0].length;
+  List<List<int>> result = List.generate(m, (_) => List.filled(n, 0));
+
+  for (int i = 0; i < m; i++) {
+    for (int j = 0; j < n; j++) {
+      result[i][j] = numberOfOnes(grid, i, j) - numberOfZeros(grid, i, j);
+    }
+  }
+  return result;
+}
+
+int numberOfOnes(List<List<int>> mat, int row, int col) {
+  int numberOfOnes = 0;
+  for (int j = 0; j < mat[0].length; j++) {
+    if (mat[row][j] == 1) {
+      numberOfOnes++;
+    }
+  }
+
+  for (int i = 0; i < mat.length; i++) {
+    if (mat[i][col] == 1) {
+      numberOfOnes++;
+    }
+  }
+  return numberOfOnes;
+}
+
+int numberOfZeros(List<List<int>> mat, int row, int col) {
+  int numberOfZeros = 0;
+  for (int j = 0; j < mat[0].length; j++) {
+    if (mat[row][j] == 0) {
+      numberOfZeros++;
+    }
+  }
+
+  for (int i = 0; i < mat.length; i++) {
+    if (mat[i][col] == 0) {
+      numberOfZeros++;
+    }
+  }
+  return numberOfZeros;
+}
+
+// Optimized Version
+/*
+Thought Process: instead of computing number of ones and zeros for each row and col every signle iteration,
+we will precompute them and put them in two sepearte arrays.
+
+Time: O(m * n)
+Space: O(m * n)
+ */
+List<List<int>> onesMinusZeros(List<List<int>> grid) {
+  int m = grid.length;
+  int n = grid[0].length;
+
+  List<int> onesRow = List.filled(m, 0);
+  List<int> onesCol = List.filled(n, 0);
+
+  for (int i = 0; i < m; i++) {
+    for (int j = 0; j < n; j++) {
+      onesRow[i] += grid[i][j];
+    }
+  }
+
+  for (int j = 0; j < n; j++) {
+    for (int i = 0; i < m; i++) {
+      onesCol[j] += grid[i][j];
+    }
+  }
+
+  List<List<int>> result = List.generate(m, (_) => List.filled(n, 0));
+  for (int i = 0; i < m; i++) {
+    for (int j = 0; j < n; j++) {
+      int zerosRow = n - onesRow[i];
+      int zerosCol = m - onesCol[j];
+      result[i][j] = (onesRow[i] + onesCol[j]) - (zerosRow + zerosCol);
+    }
+  }
+  return result;
+}
