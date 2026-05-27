@@ -421,3 +421,35 @@ List<List<int>> onesMinusZeros(List<List<int>> grid) {
   }
   return result;
 }
+
+/*
+3120.Count the Number of Special Characters I
+
+Thought Process: Mark lowercase and uppercase occurrences in two boolean arrays.
+Count indices where both are true.
+
+Time: O(n)
+Space: O(56) -->  O(1), 
+
+ */
+int numberOfSpecialChars(String word) {
+  int result = 0;
+  List<bool> lower = List.filled(26, false);
+  List<bool> upper = List.filled(26, false);
+
+  for (int i = 0; i < word.length; i++) {
+    int code = word[i].codeUnitAt(0);
+    if (code >= 97) {
+      lower[code - 97] = true;
+    } else {
+      upper[code - 65] = true;
+    }
+  }
+
+  for (int i = 0; i < 26; i++) {
+    if (lower[i] && upper[i]) {
+      result++;
+    }
+  }
+  return result;
+}
