@@ -453,3 +453,34 @@ int numberOfSpecialChars(String word) {
   }
   return result;
 }
+
+/*
+2309. Greatest English Letter in Upper and Lower Case
+
+Thought Process: Using almost the same technique of previous problem (3120)
+but returning the first element from the end of the two arrays that statisfy our condition.
+
+Time: O(n)
+Space: O(1)
+ */
+String greatestLetter(String s) {
+  List<bool> lower = List.filled(26, false);
+  List<bool> upper = List.filled(26, false);
+
+  for (int i = 0; i < s.length; i++) {
+    int code = s[i].codeUnitAt(0);
+    if (code >= 97) {
+      lower[code - 97] = true;
+    } else {
+      upper[code - 65] = true;
+    }
+  }
+
+  for (int i = 25; i >= 0; i--) {
+    if (lower[i] && upper[i]) {
+      return String.fromCharCode(i + 65);
+    }
+  }
+
+  return "";
+}
