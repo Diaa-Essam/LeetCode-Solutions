@@ -484,3 +484,36 @@ String greatestLetter(String s) {
 
   return "";
 }
+
+/*
+3300.Minimum Element After Replacement With Digit Sum
+Thought Process: Looping through the given array, and for each elemnt get the sum of it's digits and put it in a temp array,
+once the array is done return the minimum element, there is a follow up for this I can optitmize it by getting the minimum value on the fly without using a temp array.
+
+Time: O(N)
+Space: O(N) -->> for the new temp array. 
+ */
+
+int minElement(List<int> nums) {
+  List<int> temp = List.filled(nums.length, 0);
+  for (int i = 0; i < nums.length; i++) {
+    int current = nums[i], currentSum = 0;
+
+    while (current > 0) {
+      currentSum += current % 10;
+      current = current ~/ 10;
+    }
+    temp[i] = currentSum;
+    currentSum = 0;
+  }
+
+  return getMin(temp);
+}
+
+int getMin(List<int> nums) {
+  int minVal = nums[0];
+  for (int i = 0; i < nums.length; i++) {
+    minVal = min(nums[i], minVal);
+  }
+  return minVal;
+}
