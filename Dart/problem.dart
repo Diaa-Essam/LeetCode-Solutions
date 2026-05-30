@@ -517,3 +517,34 @@ int getMin(List<int> nums) {
   }
   return minVal;
 }
+
+/*
+1945. Sum of Digits of String After Convert
+
+Thought Process: Looping through the string and coverting every character to it's corresponding position and add it the a string, 
+then applay the transform operation k times, and the trasform operation is getting the sum of the digits of the current number.
+
+Time: O(n), n = s.length
+Space: O(n)
+ */
+int getLucky(String s, int k) {
+  String str = "";
+  for (int i = 0; i < s.length; i++) {
+    int currentPos = s[i].codeUnitAt(0) - 97 + 1;
+    str += currentPos.toString();
+  }
+
+  for (int i = 0; i < k; i++) {
+    str = getSumOfDigits(str).toString();
+  }
+  return int.parse(str);
+}
+
+int getSumOfDigits(String s) {
+  int result = 0;
+
+  for (int i = 0; i < s.length; i++) {
+    result += int.parse(s[i]);
+  }
+  return result;
+}
