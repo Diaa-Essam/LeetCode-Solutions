@@ -548,3 +548,32 @@ int getSumOfDigits(String s) {
   }
   return result;
 }
+
+/*
+1945. Sum of Digits of String After Convert
+
+Thought Process: Looping through from 1 to num inclusive and for each number 'i' if that number contains digits their sum is even
+we increment the counter result by 1.
+
+Time: O(n), where n is the number and from constrianst max of num is 99 so it will be "O(1)"
+Space: O(1)
+ */
+int countEven(int num) {
+  int result = 0;
+  for (int i = 1; i <= num; i++) {
+    if (getSumOfDigit(i) % 2 == 0) {
+      result++;
+    }
+  }
+  return result;
+}
+
+int getSumOfDigit(int num) {
+  int result = 0;
+
+  while (num > 0) {
+    result += num % 10;
+    num = num ~/ 10;
+  }
+  return result;
+}
