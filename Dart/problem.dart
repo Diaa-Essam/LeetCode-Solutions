@@ -577,3 +577,14 @@ int getSumOfDigit(int num) {
   }
   return result;
 }
+
+int distributeCandies(List<int> candyType) {
+  int result = 0;
+  int n = candyType.length;
+  Set<int> mySet = Set();
+  for (int i = 0; i < n; i++) {
+    mySet.add(candyType[i]);
+  }
+  result = mySet.length;
+  return min(n ~/ 2, result);
+}
