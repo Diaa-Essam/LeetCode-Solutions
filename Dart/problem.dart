@@ -588,3 +588,66 @@ int distributeCandies(List<int> candyType) {
   result = mySet.length;
   return min(n ~/ 2, result);
 }
+
+List<int> maxScoreIndices(List<int> nums) {
+  List<int> result = [0];
+  int score = getNumberOfOnes(nums);
+  int maxScore = score;
+  for (int i = 0; i < nums.length; i++) {
+    if (nums[i] == 0) {
+      score++;
+    } else {
+      score--;
+    }
+
+    if (score > maxScore) {
+      result = [i + 1];
+    } else if (score == maxScore) {
+      result.add(i + 1);
+    }
+  }
+  return result;
+}
+
+int getNumberOfOnes(List<int> nums) {
+  int counter = 0;
+  for (int i = 0; i < nums.length; i++) {
+    if (nums[i] == 1) {
+      counter++;
+    }
+  }
+  return counter;
+}
+
+/*
+696.Count Binary Substrings
+
+Thought Prcoess; Group consective same characters and record their lengths, 
+and then sum of the minimum of two adjacent elements 
+
+Time: O(n)
+Space: O(n), Due to the new array 'arr'.
+ */
+int countBinarySubstrings(String s) {
+  List<int> arr = [];
+  int counter = 1;
+
+  for (int i = 1; i < s.length; i++) {
+    if (s[i] == s[i - 1]) {
+      counter++;
+    } else {
+      arr.add(counter);
+      counter = 1;
+    }
+  }
+  arr.add(counter);
+  return getMinSumOfAdjacentElements(arr);
+}
+
+int getMinSumOfAdjacentElements(List<int> arr) {
+  int result = 0;
+  for (int i = 1; i < arr.length; i++) {
+    result += min(arr[i], arr[i - 1]);
+  }
+  return result;
+}
