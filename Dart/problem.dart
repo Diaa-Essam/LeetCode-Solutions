@@ -651,3 +651,98 @@ int getMinSumOfAdjacentElements(List<int> arr) {
   }
   return result;
 }
+
+/*
+3751. Total Waviness of Numbers in Range I
+ */
+int totalWaviness(int num1, int num2) {
+  int counter = 0;
+  for (int i = num1; i <= num2; i++) {
+    counter += getPeakAndVallyes(i);
+  }
+  return counter;
+}
+
+int getPeakAndVallyes(int num) {
+  List<int> arr = [];
+  while (num > 0) {
+    arr.add(num % 10);
+    num = num ~/ 10;
+  }
+  int result = 0;
+  for (int i = 1; i < arr.length - 1; i++) {
+    if ((arr[i] > arr[i - 1] && arr[i] > arr[i + 1]) ||
+        (arr[i] < arr[i - 1] && arr[i] < arr[i + 1])) {
+      result++;
+    }
+  }
+  return result;
+}
+
+/*
+3285. Find Indices of Stable Mountains
+ */
+List<int> stableMountains(List<int> height, int threshold) {
+  List<int> result = [];
+  for (int i = 1; i < height.length; i++) {
+    if (height[i - 1] > threshold) {
+      result.add(i);
+    }
+  }
+  return result;
+}
+
+/*
+  2215. Find the Difference of Two Arrays
+ */
+List<List<int>> findDifference(List<int> nums1, List<int> nums2) {
+  List<List<int>> result = [];
+
+  List<int> arr1 = [];
+  for (int i = 0; i < nums1.length; i++) {
+    if (!nums2.contains(nums1[i]) && !arr1.contains(nums1[i])) {
+      arr1.add(nums1[i]);
+    }
+  }
+  result.add(arr1);
+  List<int> arr2 = [];
+  for (int i = 0; i < nums2.length; i++) {
+    if (!nums1.contains(nums2[i]) && !arr2.contains(nums2[i])) {
+      arr2.add(nums2[i]);
+    }
+  }
+  result.add(arr2);
+  return result;
+}
+
+List<int> intersection1(List<int> nums1, List<int> nums2) {
+  List<int> result = [];
+  int n = nums1.length;
+
+  for (int i = 0; i < n; i++) {
+    if (nums2.contains(nums1[i]) && !result.contains(nums1[i])) {
+      result.add(nums1[i]);
+    }
+  }
+  return result;
+}
+
+List<int> intersection(List<List<int>> nums) {
+  List<int> result = [];
+  int n = nums[0].length;
+
+  for (int i = 0; i < n; i++) {
+    bool valid = true;
+    for (int j = 1; j < nums.length; j++) {
+      if (!nums[j].contains(nums[0][i])) {
+        valid = false;
+        break;
+      }
+    }
+    if (valid) {
+      result.add(nums[0][i]);
+    }
+  }
+  result.sort();
+  return result;
+}
