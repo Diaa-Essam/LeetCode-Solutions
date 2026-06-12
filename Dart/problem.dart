@@ -746,3 +746,15 @@ List<int> intersection(List<List<int>> nums) {
   result.sort();
   return result;
 }
+//1480. Running Sum of 1d Array
+List<int> runningSum(List<int> nums) 
+{
+  List<int> result = [];
+  int runningSum = 0;
+  for(int i = 0; i < nums.length; i++)
+  {
+      runningSum += nums[i];
+      result.add(runningSum);
+  }  
+  return result;
+}
