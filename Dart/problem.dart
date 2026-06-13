@@ -758,3 +758,16 @@ List<int> runningSum(List<int> nums)
   }  
   return result;
 }
+
+// 1413. Minimum Value to Get Positive Step by Step Sum
+int minStartValue(List<int> nums) 
+{
+  int minSum = 0, currentSum = 0;
+
+  for(int i = 0; i < nums.length; i++)
+  {
+      currentSum += nums[i];
+      minSum = min(minSum, currentSum);
+  }
+  return 1 - minSum;
+}
