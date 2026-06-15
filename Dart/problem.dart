@@ -746,28 +746,44 @@ List<int> intersection(List<List<int>> nums) {
   result.sort();
   return result;
 }
+
 //1480. Running Sum of 1d Array
-List<int> runningSum(List<int> nums) 
-{
+List<int> runningSum(List<int> nums) {
   List<int> result = [];
   int runningSum = 0;
-  for(int i = 0; i < nums.length; i++)
-  {
-      runningSum += nums[i];
-      result.add(runningSum);
-  }  
+  for (int i = 0; i < nums.length; i++) {
+    runningSum += nums[i];
+    result.add(runningSum);
+  }
   return result;
 }
 
 // 1413. Minimum Value to Get Positive Step by Step Sum
-int minStartValue(List<int> nums) 
-{
+int minStartValue(List<int> nums) {
   int minSum = 0, currentSum = 0;
 
-  for(int i = 0; i < nums.length; i++)
-  {
-      currentSum += nums[i];
-      minSum = min(minSum, currentSum);
+  for (int i = 0; i < nums.length; i++) {
+    currentSum += nums[i];
+    minSum = min(minSum, currentSum);
   }
   return 1 - minSum;
+}
+
+// 3838. Weighted Word Mapping
+String mapWordWeights(List<String> words, List<int> weights) {
+  String result = "";
+  for (int i = 0; i < words.length; i++) {
+    int weightSum = 0;
+    for (int j = 0; j < words[i].length; j++) {
+      int letterIndex =
+          words[i][j].codeUnitAt(0) -
+          97; // The weights are indexed by letter, not by position.
+      weightSum += weights[letterIndex];
+    }
+    int remainder = weightSum % 26;
+    weightSum = 0;
+
+    result += String.fromCharCode(122 - remainder);
+  }
+  return result;
 }
