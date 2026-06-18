@@ -787,3 +787,18 @@ String mapWordWeights(List<String> words, List<int> weights) {
   }
   return result;
 }
+
+// 724. Find Pivot Index
+int pivotIndex(List<int> nums) {
+  int resutIndex = -1;
+
+  return resutIndex;
+}
+
+int getSum(List<int> nums, int left, int right) {
+  int sum = 0;
+  for (int i = left; i <= right; i++) {
+    sum += nums[i];
+  }
+  return sum;
+}
