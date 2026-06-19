@@ -790,15 +790,30 @@ String mapWordWeights(List<String> words, List<int> weights) {
 
 // 724. Find Pivot Index
 int pivotIndex(List<int> nums) {
-  int resutIndex = -1;
+  int n = nums.length;
 
-  return resutIndex;
+  for (int i = 0; i < n; i++) {
+    if (getSum(nums, 0, i) == getSum(nums, i + 1, n)) {
+      return i;
+    }
+  }
+  return -1;
 }
 
 int getSum(List<int> nums, int left, int right) {
   int sum = 0;
-  for (int i = left; i <= right; i++) {
+  for (int i = left; i < right; i++) {
     sum += nums[i];
   }
   return sum;
+}
+
+// 1732. Find the Highest Altitude
+int largestAltitude(List<int> gain) {
+  int highestAltitude = 0, sum = 0;
+  for (int i = 0; i < gain.length; i++) {
+    sum += gain[i];
+    highestAltitude = max(highestAltitude, sum);
+  }
+  return highestAltitude;
 }
