@@ -817,3 +817,19 @@ int largestAltitude(List<int> gain) {
   }
   return highestAltitude;
 }
+
+// 1833. Maximum Ice Cream Bars
+int maxIceCream(List<int> costs, int coins) {
+  int result = 0, index = 0;
+  costs.sort();
+  while (coins > 0) {
+    if (index < costs.length && coins >= costs[index]) {
+      result++;
+      coins -= costs[index];
+    } else {
+      break;
+    }
+    index++;
+  }
+  return result;
+}
