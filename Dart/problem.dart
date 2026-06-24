@@ -833,3 +833,16 @@ int maxIceCream(List<int> costs, int coins) {
   }
   return result;
 }
+
+//1672. Richest Customer Wealth
+int maximumWealth(List<List<int>> accounts) {
+  int maxSum = 0, currentSum = 0;
+  for (int i = 0; i < accounts.length; i++) {
+    currentSum = 0;
+    for (int j = 0; j < accounts[i].length; j++) {
+      currentSum += accounts[i][j];
+      maxSum = max(maxSum, currentSum);
+    }
+  }
+  return maxSum;
+}
