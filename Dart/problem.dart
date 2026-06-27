@@ -846,3 +846,39 @@ int maximumWealth(List<List<int>> accounts) {
   }
   return maxSum;
 }
+
+int countMajoritySubarrays(List<int> nums, int target) {
+  int result = 0, count = 0;
+  for (int i = 0; i < nums.length; i++) {
+    count = 0;
+    for (int j = i; j < nums.length; j++) {
+      if (nums[j] == target) {
+        count++;
+      }
+      int length = j - i + 1;
+      if (count * 2 > length) result++;
+    }
+  }
+  return result;
+}
+
+/*
+2089. Find Target Indices After Sorting Array
+
+Thought Process: sort the given array first and then loop throgh the sorted one, whenever finding a value equals to the given target in the array
+add it's index in the result array.
+
+Time: O(nlogn), due to sorting the array.
+Space: O(1)
+ */
+List<int> targetIndices(List<int> nums, int target) {
+  List<int> result = [];
+
+  nums.sort();
+  for (int i = 0; i < nums.length; i++) {
+    if (nums[i] == target) {
+      result.add(i);
+    }
+  }
+  return result;
+}
