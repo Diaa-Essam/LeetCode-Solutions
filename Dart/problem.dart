@@ -882,3 +882,43 @@ List<int> targetIndices(List<int> nums, int target) {
   }
   return result;
 }
+
+/*
+867. Transpose Matrix
+ */
+List<List<int>> transpose(List<List<int>> matrix) {
+  List<List<int>> result = List.generate(
+    matrix[0].length,
+    (_) => List.filled(matrix.length, 0),
+  );
+  for (int i = 0; i < matrix.length; i++) {
+    for (int j = 0; j < matrix[i].length; j++) {
+      result[j][i] = matrix[i][j];
+    }
+  }
+
+  return result;
+}
+
+/*
+1608. Special Array With X Elements Greater Than or Equal X
+ */
+
+int specialArray(List<int> nums) {
+  for (int i = 0; i <= nums.length; i++) {
+    if (isUnique(nums, i)) {
+      return i;
+    }
+  }
+  return -1;
+}
+
+bool isUnique(List<int> nums, int n) {
+  int count = 0;
+  for (int i = 0; i < nums.length; i++) {
+    if (nums[i] >= n) {
+      count++;
+    }
+  }
+  return count == n;
+}
