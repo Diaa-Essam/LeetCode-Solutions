@@ -937,3 +937,19 @@ int numberOfPairs(List<int> nums1, List<int> nums2, int k) {
   }
   return count;
 }
+
+/*
+3898. Find the Degree of Each Vertex
+ */
+List<int> findDegrees(List<List<int>> matrix) {
+  List<int> result = [];
+  for (int i = 0; i < matrix.length; i++) {
+    int count = 0;
+    for (int j = 0; j < matrix[i].length; j++) {
+      count += matrix[i][j];
+    }
+    result.add(count);
+    count = 0;
+  }
+  return result;
+}
