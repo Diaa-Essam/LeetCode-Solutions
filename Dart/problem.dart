@@ -949,7 +949,20 @@ List<int> findDegrees(List<List<int>> matrix) {
       count += matrix[i][j];
     }
     result.add(count);
-    count = 0;
+  }
+  return result;
+}
+
+/*
+3925. Concatenate Array With Reverse
+ */
+List<int> concatWithReverse(List<int> nums) {
+  List<int> result = [];
+  for (int i = 0; i < nums.length; i++) {
+    result.add(nums[i]);
+  }
+  for (int i = nums.length - 1; i >= 0; i--) {
+    result.add(nums[i]);
   }
   return result;
 }
