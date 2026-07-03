@@ -966,3 +966,27 @@ List<int> concatWithReverse(List<int> nums) {
   }
   return result;
 }
+
+/*
+3668. Restore Finishing Order
+Thought Process: Putting the friends list in a set for fast lookups O(1),
+Looping through the order array and whenever we encounter an element in order and at the same time in the set we add that element to the result list.
+
+Time: O(n).
+Space: O(k), where k is the length of friends.
+ */
+List<int> recoverOrder(List<int> order, List<int> friends) {
+  List<int> result = [];
+  Set<int> mySet = {};
+
+  for (int i = 0; i < friends.length; i++) {
+    mySet.add(friends[i]);
+  }
+
+  for (int i = 0; i < order.length; i++) {
+    if (mySet.contains(order[i])) {
+      result.add(order[i]);
+    }
+  }
+  return result;
+}
