@@ -990,3 +990,25 @@ List<int> recoverOrder(List<int> order, List<int> friends) {
   }
   return result;
 }
+
+/*
+2396. Strictly Palindromic Number
+ */
+bool isStrictlyPalindromic(int n) {
+  for (int i = 2; i <= n; i++) {
+    if (!isPalindromic(n.toRadixString(i))) {
+      return false;
+    }
+  }
+  return true;
+}
+
+bool isPalindromic(String s) {
+  int left = 0, right = s.length - 1;
+  while (left < right) {
+    if (s[left] != s[right]) {
+      return false;
+    }
+  }
+  return true;
+}
