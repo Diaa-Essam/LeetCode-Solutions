@@ -1012,3 +1012,21 @@ bool isPalindromic(String s) {
   }
   return true;
 }
+
+/*
+1769. Minimum Number of Operations to Move All Balls to Each Box
+ */
+List<int> minOperations(String boxes) {
+  List<int> result = [];
+  int n = boxes.length;
+  for (int i = 0; i < n; i++) {
+    int moves = 0;
+    for (int j = 0; j < n; j++) {
+      if (boxes[i] == '1') {
+        moves += (j - i).abs();
+      }
+    }
+    result.add(moves);
+  }
+  return result;
+}
