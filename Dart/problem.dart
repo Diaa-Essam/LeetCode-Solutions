@@ -847,6 +847,9 @@ int maximumWealth(List<List<int>> accounts) {
   return maxSum;
 }
 
+/*
+3737. Count Subarrays With Majority Element I
+ */
 int countMajoritySubarrays(List<int> nums, int target) {
   int result = 0, count = 0;
   for (int i = 0; i < nums.length; i++) {
@@ -1027,6 +1030,23 @@ List<int> minOperations(String boxes) {
       }
     }
     result.add(moves);
+  }
+  return result;
+}
+
+/*
+3701. Compute Alternating Sum
+Time: O(n)
+Space : O(1)
+ */
+int alternatingSum(List<int> nums) {
+  int result = 0, n = nums.length;
+  for (int i = 0; i < n; i++) {
+    if (i % 2 == 0) {
+      result += nums[i];
+    } else {
+      result -= nums[i];
+    }
   }
   return result;
 }
