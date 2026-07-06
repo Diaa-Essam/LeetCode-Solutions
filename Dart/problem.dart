@@ -1050,3 +1050,24 @@ int alternatingSum(List<int> nums) {
   }
   return result;
 }
+
+/*
+1863. Sum of All Subset XOR Totals
+
+Time: O(2^n) --> Number of Subsets
+space: O(n) --> recursion depth
+ */
+int subsetXORSum(List<int> nums) {
+  int result = 0;
+  void dfs(int i, int currentXOR) {
+    if (i == nums.length) {
+      result += currentXOR;
+      return;
+    }
+    dfs(i + 1, currentXOR); // Exclude
+    dfs(i + 1, currentXOR ^ nums[i]); // Include
+  }
+
+  dfs(0, 0);
+  return result;
+}
