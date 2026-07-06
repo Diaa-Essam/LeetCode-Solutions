@@ -1,7 +1,6 @@
-//2553. Separate the Digits in an Array
-
 import 'dart:math';
 
+//2553. Separate the Digits in an Array
 List<int> separateDigits(List<int> nums) {
   List<int> result = [];
   for (int i = 0; i < nums.length; i++) {
@@ -1070,4 +1069,18 @@ int subsetXORSum(List<int> nums) {
 
   dfs(0, 0);
   return result;
+}
+
+/*
+3467. Transform Array by Parity
+ */
+List<int> transformArray(List<int> nums) {
+  // Even --> 0
+  // Odd --> 1
+
+  for (int i = 0; i < nums.length; i++) {
+    nums[i] = (nums[i] % 2 == 0) ? 0 : 1;
+  }
+  nums.sort();
+  return nums;
 }
