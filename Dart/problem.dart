@@ -1084,3 +1084,29 @@ List<int> transformArray(List<int> nums) {
   nums.sort();
   return nums;
 }
+
+/*
+3289. The Two Sneaky Numbers of Digitville
+Thought Process: 
+1)Use set for fast lookups O(1)
+2)Loop through the nums array and for each element if seen before means that it's a duplicate
+
+Time: O(n)
+Space: O(n)
+ */
+
+List<int> getSneakyNumbers(List<int> nums) {
+  List<int> result = [];
+  Set<int> set = {};
+
+  for (int i = 0; i < nums.length; i++) {
+    if (set.contains(nums[i])) {
+      result.add(nums[i]);
+      if (result.length == 2) break;
+    } else {
+      set.add(nums[i]);
+    }
+  }
+
+  return result;
+}
