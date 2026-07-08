@@ -1110,3 +1110,27 @@ List<int> getSneakyNumbers(List<int> nums) {
 
   return result;
 }
+
+/*
+2044. Count Number of Maximum Bitwise-OR Subsets
+Time: O(2^n)
+Space: O(n), recursion depth
+ */
+int countMaxOrSubsets(List<int> nums) {
+  int result = 0, maxOR = 0;
+  for (int i = 0; i < nums.length; i++) {
+    maxOR |= nums[i];
+  }
+  void dfs(int i, int currentOR) {
+    if (i == nums.length) {
+      if (currentOR == maxOR) result++;
+      return;
+    }
+
+    dfs(i + 1, currentOR);
+    dfs(i + 1, currentOR | nums[i]);
+  }
+
+  dfs(0, 0);
+  return result;
+}
