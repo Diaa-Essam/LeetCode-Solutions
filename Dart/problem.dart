@@ -1134,3 +1134,17 @@ int countMaxOrSubsets(List<int> nums) {
   dfs(0, 0);
   return result;
 }
+
+/*
+3794. Reverse String Prefix
+ */
+String reversePrefix(String s, int k) {
+  String result = '';
+  for (int i = k - 1; i >= 0; i--) {
+    result += s[i];
+  }
+  for (int i = k; i < s.length; i++) {
+    result += s[i];
+  }
+  return result;
+}
