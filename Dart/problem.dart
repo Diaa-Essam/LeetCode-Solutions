@@ -1151,6 +1151,7 @@ String reversePrefix(String s, int k) {
 
 /*
 2657. Find the Prefix Common Array of Two Arrays
+There is a better solution
 */
 List<int> findThePrefixCommonArray(List<int> A, List<int> B) {
   List<int> result = [];
