@@ -1173,3 +1173,18 @@ int getCommonCount(List<int> A, List<int> B, int l) {
   }
   return count;
 }
+
+/*
+2037. Minimum Number of Moves to Seat Everyone
+*/
+
+int minMovesToSeat(List<int> seats, List<int> students) {
+  seats.sort();
+  students.sort();
+
+  int result = 0;
+  for (int i = 0; i < students.length; i++) {
+    result += (students[i] - seats[i]).abs();
+  }
+  return result;
+}
