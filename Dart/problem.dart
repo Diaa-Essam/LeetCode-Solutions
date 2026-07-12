@@ -1188,3 +1188,27 @@ int minMovesToSeat(List<int> seats, List<int> students) {
   }
   return result;
 }
+
+/*
+2125. Number of Laser Beams in a Bank
+ */
+int numberOfBeams(List<String> bank) {
+  List<int> arr = [];
+  int result = 0;
+  for (int i = 0; i < bank.length; i++) {
+    int count = 0;
+    for (int j = 0; j < bank[i].length; j++) {
+      if (bank[i][j] == '1') {
+        count++;
+      }
+    }
+    if (count != 0) {
+      arr.add(count);
+    }
+  }
+
+  for (int i = 1; i < arr.length; i++) {
+    result += (arr[i] * arr[i - 1]);
+  }
+  return result;
+}
