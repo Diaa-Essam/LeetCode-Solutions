@@ -1212,3 +1212,26 @@ int numberOfBeams(List<String> bank) {
   }
   return result;
 }
+
+/*
+3264. Final Array State After K Multiplication Operations I
+Time:O(K * n)
+Space:O(1)
+ */
+List<int> getFinalState(List<int> nums, int k, int multiplier) {
+  for (int i = 0; i < k; i++) {
+    nums[getIndexOfMin(nums)] *= multiplier;
+  }
+  return nums;
+}
+
+int getIndexOfMin(List<int> nums) {
+  int minIndex = 0, minVal = 999999;
+  for (int i = 0; i < nums.length; i++) {
+    if (nums[i] < minVal) {
+      minIndex = i;
+      minVal = nums[i];
+    }
+  }
+  return minIndex;
+}
