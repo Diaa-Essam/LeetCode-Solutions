@@ -1235,3 +1235,18 @@ int getIndexOfMin(List<int> nums) {
   }
   return minIndex;
 }
+
+/*
+3065. Minimum Operations to Exceed Threshold Value I
+Time: O(n)
+Space: O(1)
+ */
+int minOperation(List<int> nums, int k) {
+  int count = 0;
+  for (int i = 0; i < nums.length; i++) {
+    if (nums[i] < k) {
+      count++;
+    }
+  }
+  return count;
+}
