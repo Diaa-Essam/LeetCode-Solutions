@@ -1250,3 +1250,25 @@ int minOperation(List<int> nums, int k) {
   }
   return count;
 }
+
+/*
+1828. Queries on Number of Points Inside a Circle
+ */
+List<int> countPoints(List<List<int>> points, List<List<int>> queries) {
+  List<int> result = [];
+  for (int i = 0; i < queries.length; i++) {
+    int count = 0;
+    for (int j = 0; j < points.length; j++) {
+      double distance = sqrt(
+        pow(queries[i][0] - points[j][0], 2) +
+            pow(queries[i][1] - points[j][1], 2),
+      );
+      if (distance <= queries[i][2]) {
+        count++;
+      }
+    }
+    result.add(count);
+  }
+
+  return result;
+}
