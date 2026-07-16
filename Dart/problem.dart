@@ -1272,3 +1272,25 @@ List<int> countPoints(List<List<int>> points, List<List<int>> queries) {
 
   return result;
 }
+
+/*
+3895. Count Digit Appearances
+Time: O(n)
+Space: O(1)
+
+Thought Process: Looping thorugh all elements of the array 'nums'
+for each element using the while loop throught each digit in it using the % operation.
+ */
+int countDigitOccurrences(List<int> nums, int digit) {
+  int count = 0;
+  for (int i = 0; i < nums.length; i++) {
+    int current = nums[i];
+    while (current > 0) {
+      if (current % 10 == digit) {
+        count++;
+      }
+      current ~/= 10;
+    }
+  }
+  return count;
+}
