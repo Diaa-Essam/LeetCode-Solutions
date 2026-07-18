@@ -1296,4 +1296,40 @@ int countDigitOccurrences(List<int> nums, int digit) {
 }
 /*
 807. Max Increase to Keep City Skyline
- */
+Time: O(n * m) = O(n^2), since a grid is a square matrix
+Space: O(n)
+*/
+
+int maxIncreaseKeepingSkyline(List<List<int>> grid) {
+  int result = 0, n = grid.length, m = grid[0].length;
+
+  List<int> maxRows = List.filled(n, 0);
+  List<int> maxCols = List.filled(n, 0);
+
+  for (int i = 0; i < n; i++) {
+    int max = grid[i][0];
+    for (int j = 0; j < m; j++) {
+      if (grid[i][j] > max) {
+        max = grid[i][j];
+      }
+    }
+    maxRows[i] = max;
+  }
+
+  for (int j = 0; j < m; j++) {
+    int max = grid[0][j];
+    for (int i = 0; i < n; i++) {
+      if (grid[i][j] > max) {
+        max = grid[i][j];
+      }
+    }
+    maxCols[j] = max;
+  }
+
+  for (int i = 0; i < n; i++) {
+    for (int j = 0; j < m; j++) {
+      result += min(maxRows[i], maxCols[j]) - grid[i][j];
+    }
+  }
+  return result;
+}
