@@ -1294,36 +1294,53 @@ int countDigitOccurrences(List<int> nums, int digit) {
   }
   return count;
 }
+
 /*
 807. Max Increase to Keep City Skyline
-Time: O(n * m) = O(n^2), since a grid is a square matrix
-Space: O(n)
-*/
 
+Intuition
+To Keep City Skyline, you can to increase the value of any tower as long as it's not longer than any tower in it's row and column.
+
+The tallest building in each row and column defines the skyline. Therefore, each building can be increased up to min(rowMax, colMax) without changing either skyline.
+
+Approach
+If our objective in this problem is to make all towers taller(without affecting the skyline which means no tower in it's row or it's column is taller)
+
+Example:
+consider the given input
+[3,0]
+[2,5]
+What are the values of the array after increasing the height of buildings without affecting the skyline?
+
+[3, 3]
+[3, 5]
+
+So, is that the output ??
+no we need to sum up the differece between those grids to get the result.
+
+result = (0 + 3 + 1 + 0) = 4
+
+and return that result.
+
+1.Find the maximum height of every row.
+2.Find the maximum height of every column.
+3.For each cell, the maximum allowed height is min(rowMax[i], colMax[j]), Add the increase to the answer
+
+Complexity
+Time complexity: O(n^2)
+Space complexity: O(n)
+*/
 int maxIncreaseKeepingSkyline(List<List<int>> grid) {
   int result = 0, n = grid.length, m = grid[0].length;
 
   List<int> maxRows = List.filled(n, 0);
-  List<int> maxCols = List.filled(n, 0);
+  List<int> maxCols = List.filled(m, 0);
 
   for (int i = 0; i < n; i++) {
-    int max = grid[i][0];
     for (int j = 0; j < m; j++) {
-      if (grid[i][j] > max) {
-        max = grid[i][j];
-      }
+      maxRows[i] = max(maxRows[i], grid[i][j]);
+      maxCols[j] = max(maxCols[j], grid[i][j]);
     }
-    maxRows[i] = max;
-  }
-
-  for (int j = 0; j < m; j++) {
-    int max = grid[0][j];
-    for (int i = 0; i < n; i++) {
-      if (grid[i][j] > max) {
-        max = grid[i][j];
-      }
-    }
-    maxCols[j] = max;
   }
 
   for (int i = 0; i < n; i++) {
