@@ -1297,6 +1297,7 @@ int countDigitOccurrences(List<int> nums, int digit) {
 
 /*
 807. Max Increase to Keep City Skyline
+Thought Process:
 
 Intuition
 To Keep City Skyline, you can to increase the value of any tower as long as it's not longer than any tower in it's row and column.
@@ -1349,4 +1350,34 @@ int maxIncreaseKeepingSkyline(List<List<int>> grid) {
     }
   }
   return result;
+}
+
+/*
+1967. Number of Strings That Appear as Substrings in Word 
+
+Thought Process: 
+# Intuition
+
+A substring is a contiguous sequence of characters that appears as it is in the given word.
+
+A pattern contributes to the answer only if it appears as a substring of word. We can check each pattern independently using contains().
+
+# Approach
+Iterate through every string in patterns  using the function named .contains() to check if that string appeared in any part of the given word
+
+# Complexity
+- Time complexity: $$O(n * m)$$
+ n: number of patterns
+ m: word.length
+
+- Space complexity: $$O(1)$$
+*/
+int numOfStrings(List<String> patterns, String word) {
+  int count = 0;
+  for (int i = 0; i < patterns.length; i++) {
+    if (word.contains(patterns[i])) {
+      count++;
+    }
+  }
+  return count;
 }
