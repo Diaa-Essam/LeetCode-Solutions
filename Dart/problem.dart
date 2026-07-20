@@ -1381,3 +1381,7 @@ int numOfStrings(List<String> patterns, String word) {
   }
   return count;
 }
+
+/*
+2610. Convert an Array Into a 2D Array With Conditions
+ */
