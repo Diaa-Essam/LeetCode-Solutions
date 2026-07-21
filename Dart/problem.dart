@@ -1,3 +1,4 @@
+import 'dart:collection';
 import 'dart:math';
 
 //2553. Separate the Digits in an Array
@@ -1385,3 +1386,21 @@ int numOfStrings(List<String> patterns, String word) {
 /*
 2610. Convert an Array Into a 2D Array With Conditions
  */
+
+List<List<int>> findMatrix(List<int> nums) {
+  Map<int, int> freq = {};
+  List<List<int>> result = [];
+
+  for (final num in nums) {
+    int row = freq[num] ?? 0;
+
+    if (row == result.length) {
+      result.add([]);
+    }
+
+    result[row].add(num);
+    freq[num] = row + 1;
+  }
+
+  return result;
+}
