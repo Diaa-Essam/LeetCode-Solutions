@@ -1404,3 +1404,51 @@ List<List<int>> findMatrix(List<int> nums) {
 
   return result;
 }
+
+/*
+2545. Sort the Students by Their Kth Score
+Thought Process:
+
+Intuition
+It's just a basic sorting problem, Ta Da.
+
+We need to sort the rows of the matrix"students" based on the value in the 'k'th column in descending order, and we are not gonna use built in function, where is the fun.
+
+Approach
+We can use any sorting algorithm we think about because of the number of students in gonna be less than or equal 250.
+
+Selection Sort:
+repeatedly find the student with the highest score in the 'k'th exam among the remainging rows, then swap that row into its correct position.
+
+Complexity
+Time complexity: O(n^2), where n is the number of the students
+
+Space complexity: O(1)
+ */
+List<List<int>> sortTheStudents(List<List<int>> score, int k) {
+  for (int i = 0; i < score.length; i++) {
+    for (int j = 0; j < score[i].length - i - 1; j++) {
+      if (score[j][k] < score[j + 1][k]) {
+        List<int> temp = score[j];
+        score[j] = score[j + 1];
+        score[j + 1] = temp;
+      }
+    }
+  }
+  return score;
+}
+
+List<List<int>> sortTheStudents2(List<List<int>> score, int k) {
+  for (int i = 0; i < score.length; i++) {
+    int minScoreIndex = i;
+    for (int j = i + 1; j < score.length; j++) {
+      if (score[j][k] > score[minScoreIndex][k]) {
+        minScoreIndex = j;
+      }
+    }
+    List<int> temp = score[i];
+    score[i] = score[minScoreIndex];
+    score[minScoreIndex] = temp;
+  }
+  return score;
+}
