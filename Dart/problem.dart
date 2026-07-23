@@ -1466,3 +1466,7 @@ int subarraySum(List<int> nums) {
   }
   return sum;
 }
+
+/*
+2367. Number of Arithmetic Triplets
+ */
