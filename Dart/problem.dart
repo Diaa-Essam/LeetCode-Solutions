@@ -1470,3 +1470,17 @@ int subarraySum(List<int> nums) {
 /*
 2367. Number of Arithmetic Triplets
  */
+
+int arithmeticTriplets(List<int> nums, int diff) {
+  int count = 0;
+  for (int i = 0; i < nums.length; i++) {
+    for (int j = 0; j < nums.length; j++) {
+      for (int k = 0; k < nums.length; k++) {
+        if (nums[j] - nums[i] == diff && nums[k] - nums[j] == diff) {
+          count++;
+        }
+      }
+    }
+  }
+  return count;
+}
