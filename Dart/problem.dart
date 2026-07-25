@@ -1484,3 +1484,7 @@ int arithmeticTriplets(List<int> nums, int diff) {
   }
   return count;
 }
+
+/*
+1534. Count Good Triplets
+ */
