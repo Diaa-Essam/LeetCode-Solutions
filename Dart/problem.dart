@@ -1487,4 +1487,22 @@ int arithmeticTriplets(List<int> nums, int diff) {
 
 /*
 1534. Count Good Triplets
+Time: O(n^3)
+Space: O(1)
  */
+
+int countGoodTriplets(List<int> arr, int a, int b, int c) {
+  int count = 0, n = arr.length;
+  for (int i = 0; i < n; i++) {
+    for (int j = i + 1; j < n; j++) {
+      for (int k = j + 1; j < n; j++) {
+        if ((arr[i] - arr[j]).abs() <= a &&
+            (arr[j] - arr[k]).abs() <= b &&
+            (arr[i] - arr[k]).abs() <= c) {
+          count++;
+        }
+      }
+    }
+  }
+  return count;
+}
