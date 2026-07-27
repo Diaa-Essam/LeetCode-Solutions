@@ -1506,3 +1506,22 @@ int countGoodTriplets(List<int> arr, int a, int b, int c) {
   }
   return count;
 }
+
+/*
+3194. Minimum Average of Smallest and Largest Elements
+ */
+double minimumAverage(List<int> nums) {
+  nums.sort();
+  double minAvg = double.infinity;
+  int left = 0, right = nums.length - 1;
+
+  while (left < right) {
+    double avg = (nums[left] + nums[right]) / 2.0;
+    if (avg < minAvg) {
+      minAvg = avg;
+    }
+    left++;
+    right--;
+  }
+  return minAvg;
+}
