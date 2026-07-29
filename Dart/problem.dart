@@ -1019,7 +1019,7 @@ bool isPalindromic(String s) {
 /*
 1769. Minimum Number of Operations to Move All Balls to Each Box
  */
-List<int> minOperations(String boxes) {
+List<int> minOperations2(String boxes) {
   List<int> result = [];
   int n = boxes.length;
   for (int i = 0; i < n; i++) {
@@ -1529,3 +1529,20 @@ double minimumAverage(List<int> nums) {
 /*
 2997. Minimum Number of Operations to Make Array XOR Equal to K
  */
+
+int minOperations(List<int> nums, int k) {
+  int operations = 0, totalXOR = nums[0];
+  for (int i = 1; i < nums.length; i++) {
+    totalXOR ^= nums[i];
+  }
+  int diff = totalXOR ^ k;
+
+  while (diff > 0) {
+    if (diff & 1 == 1) {
+      operations++;
+    }
+    diff >>= 1;
+  }
+
+  return operations;
+}
