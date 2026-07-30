@@ -1546,3 +1546,19 @@ int minOperations(List<int> nums, int k) {
 
   return operations;
 }
+
+/*
+3688. Bitwise OR of Even Numbers in an Array
+
+Time: O(n)
+Space: O(1)
+ */
+int evenNumberBitwiseORs(List<int> nums) {
+  int result = 0;
+  for (int i = 0; i < nums.length; i++) {
+    if (nums[i] % 2 == 0) {
+      result |= nums[i];
+    }
+  }
+  return result;
+}
