@@ -1562,3 +1562,7 @@ int evenNumberBitwiseORs(List<int> nums) {
   }
   return result;
 }
+
+/*
+2391. Minimum Amount of Time to Collect Garbage
+ */
