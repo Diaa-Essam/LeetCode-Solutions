@@ -1565,4 +1565,38 @@ int evenNumberBitwiseORs(List<int> nums) {
 
 /*
 2391. Minimum Amount of Time to Collect Garbage
+Time: O(n * m)
+Space: O(1)
  */
+
+int garbageCollection(List<String> garbage, List<int> travel) {
+  int result = 0;
+  result += collectGarbageType(garbage, travel, 'M');
+  result += collectGarbageType(garbage, travel, 'P');
+  result += collectGarbageType(garbage, travel, 'G');
+
+  return result;
+}
+
+int collectGarbageType(
+  List<String> garbage,
+  List<int> travel,
+  String candidate,
+) {
+  int time = 0;
+  int lastIndex = -1;
+  for (int i = 0; i < garbage.length; i++) {
+    String trash = garbage[i];
+    for (int j = 0; j < trash.length; j++) {
+      if (trash[j] == candidate) {
+        time++;
+        lastIndex = i;
+      }
+    }
+  }
+
+  for (int i = 0; i < lastIndex; i++) {
+    time += travel[i];
+  }
+  return time;
+}
