@@ -1600,4 +1600,32 @@ int collectGarbageType(
   }
   return time;
 }
-// 1409. Queries on a Permutation With Key
+/*
+1409. Queries on a Permutation With Key
+
+Time: O(n * m), where n is queries.length
+Space: O(m)
+ */
+
+List<int> processQueries(List<int> queries, int m) {
+  List<int> p = [];
+  List<int> result = [];
+
+  for (int i = 0; i < m; i++) {
+    p.add(i + 1);
+  }
+
+  for (int i = 0; i < queries.length; i++) {
+    int query = queries[i];
+    for (int j = 0; j < m; j++) {
+      if (p[j] == query) {
+        int val = p[j];
+        p.removeAt(j);
+        p.insert(0, val);
+        result.add(j);
+        break;
+      }
+    }
+  }
+  return result;
+}
