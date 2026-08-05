@@ -1629,3 +1629,20 @@ List<int> processQueries(List<int> queries, int m) {
   }
   return result;
 }
+
+/*
+3683. Earliest Time to Finish One Task
+
+Time: O(n)
+Space: O(1)
+ */
+int earliestTime(List<List<int>> tasks) {
+  int minTime = (1 << 30);
+  for (int i = 0; i < tasks.length; i++) {
+    int currentTime = tasks[i][0] + tasks[i][1];
+    if (currentTime < minTime) {
+      minTime = currentTime;
+    }
+  }
+  return minTime;
+}
