@@ -1646,3 +1646,19 @@ int earliestTime(List<List<int>> tasks) {
   }
   return minTime;
 }
+
+/*
+1561. Maximum Number of Coins You Can Get
+
+Time: O(n * logn)
+Space: O(1)
+ */
+int maxCoins(List<int> piles) {
+  int maxCoins = 0, end = (0.67 * piles.length).toInt();
+
+  piles.sort((a, b) => b.compareTo(a));
+  for (int i = 1; i < end; i += 2) {
+    maxCoins += piles[i];
+  }
+  return maxCoins;
+}
