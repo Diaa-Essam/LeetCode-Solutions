@@ -1662,3 +1662,30 @@ int maxCoins(List<int> piles) {
   }
   return maxCoins;
 }
+
+/*
+2149. Rearrange Array Elements by Sign
+
+Time: O(n)
+Space: O(n)
+ */
+List<int> rearrangeArray(List<int> nums) {
+  List<int> result = [];
+  int p = 0, n = 0;
+  for (int i = 0; i < nums.length; i++) {
+    if (i % 2 == 0) {
+      while (nums[p] < 0) {
+        p++;
+      }
+      result.add(nums[p]);
+      p++;
+    } else {
+      while (nums[n] > 0) {
+        n++;
+      }
+      result.add(nums[n]);
+      n++;
+    }
+  }
+  return result;
+}
