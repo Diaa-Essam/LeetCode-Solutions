@@ -1689,3 +1689,28 @@ List<int> rearrangeArray(List<int> nums) {
   }
   return result;
 }
+
+int countTriplets(List<int> arr) {
+  int count = 0;
+  for (int i = 0; i < arr.length; i++) {
+    for (int j = i + 1; j < arr.length; j++) {
+      for (int k = j; k < arr.length; k++) {
+        int xor1 = getXOR(arr, i, j - 1);
+        int xor2 = getXOR(arr, j, k);
+
+        if (xor1 == xor2) {
+          count++;
+        }
+      }
+    }
+  }
+  return count;
+}
+
+int getXOR(List<int> arr, int start, int end) {
+  int result = 0;
+  for (int i = start; i <= end; i++) {
+    result ^= arr[i];
+  }
+  return result;
+}
