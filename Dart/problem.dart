@@ -1690,6 +1690,7 @@ List<int> rearrangeArray(List<int> nums) {
   return result;
 }
 
+//1442. Count Triplets That Can Form Two Arrays of Equal XOR
 int countTriplets(List<int> arr) {
   int count = 0;
   for (int i = 0; i < arr.length; i++) {
@@ -1713,4 +1714,34 @@ int getXOR(List<int> arr, int start, int end) {
     result ^= arr[i];
   }
   return result;
+}
+
+/*
+2956. Find Common Elements Between Two Arrays
+
+Time: O(n^2)
+Space: O(1)
+ */
+List<int> findIntersectionValues(List<int> nums1, List<int> nums2) {
+  List<int> result = [];
+  int answer1 = countCommonElements(nums1, nums2);
+  int answer2 = countCommonElements(nums2, nums1);
+
+  result.add(answer1);
+  result.add(answer2);
+
+  return result;
+}
+
+int countCommonElements(List<int> nums1, List<int> nums2) {
+  int count = 0;
+  for (int i = 0; i < nums1.length; i++) {
+    for (int j = 0; j < nums2.length; j++) {
+      if (nums1[i] == nums2[j]) {
+        count++;
+        break;
+      }
+    }
+  }
+  return count;
 }
