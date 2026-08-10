@@ -1745,3 +1745,46 @@ int countCommonElements(List<int> nums1, List<int> nums2) {
   }
   return count;
 }
+
+/*
+3446. Sort Matrix by Diagonals
+
+Time: O(n^2 log n)
+Space: O(n)
+ */
+
+List<List<int>> sortMatrix(List<List<int>> grid) {
+  int n = grid.length;
+
+  // Bottom left
+  for (int d = 0; d < n; d++) {
+    List<int> arr = [];
+
+    for (int i = 0; i < n - d; i++) {
+      arr.add(grid[i + d][i]);
+    }
+
+    arr.sort((a, b) => b.compareTo(a));
+
+    for (int i = 0; i < arr.length; i++) {
+      grid[i + d][i] = arr[i];
+    }
+  }
+
+  // Top right
+  for (int d = n - 1; d > 0; d--) {
+    List<int> arr = [];
+
+    for (int i = 0; i < n - d; i++) {
+      arr.add(grid[i][i + d]);
+    }
+
+    arr.sort();
+
+    for (int i = 0; i < arr.length; i++) {
+      grid[i][i + d] = arr[i];
+    }
+  }
+
+  return grid;
+}
