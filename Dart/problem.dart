@@ -1825,3 +1825,26 @@ TreeNode? bstFromPreorder(List<int> preorder) {
   }
   return root;
 }
+
+/*
+2185. Counting Words With a Given Prefix
+ */
+
+int prefixCount(List<String> words, String pref) {
+  int count = 0;
+  for (int i = 0; i < words.length; i++) {
+    if (startsWith(words[i], pref)) {
+      count++;
+    }
+  }
+  return count;
+}
+
+bool startsWith(String word, String pref) {
+  for (int i = 0; i < pref.length; i++) {
+    if (word[i] != pref[i]) {
+      return false;
+    }
+  }
+  return true;
+}
