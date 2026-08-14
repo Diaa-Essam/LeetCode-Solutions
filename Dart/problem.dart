@@ -1788,3 +1788,40 @@ List<List<int>> sortMatrix(List<List<int>> grid) {
 
   return grid;
 }
+
+/*
+1008. Construct Binary Search Tree from Preorder Traversal
+Time: O(n * d)
+Space: O(n)
+ */
+
+class TreeNode {
+  int val;
+  TreeNode? left;
+  TreeNode? right;
+  TreeNode([this.val = 0, this.left, this.right]);
+}
+
+TreeNode? bstFromPreorder(List<int> preorder) {
+  TreeNode root = TreeNode(preorder[0]);
+  for (int i = 1; i < preorder.length; i++) {
+    int val = preorder[i];
+    TreeNode current = root;
+    while (current != null) {
+      if (val < current.val) {
+        if (current.left == null) {
+          current.left = TreeNode(val);
+          break;
+        }
+        current = current.left!;
+      } else {
+        if (current.right == null) {
+          current.right = TreeNode(val);
+          break;
+        }
+        current = current.right!;
+      }
+    }
+  }
+  return root;
+}
