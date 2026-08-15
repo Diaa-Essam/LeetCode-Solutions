@@ -1848,3 +1848,33 @@ bool startsWith(String word, String pref) {
   }
   return true;
 }
+
+// 191. Number of 1 Bits
+int hammingWeight_1(int n) {
+  int count = 0;
+  String str = n.toRadixString(2);
+  for (int i = 0; i < str.length; i++) {
+    if (str[i] == '1') {
+      count++;
+    }
+  }
+  return count;
+}
+
+// 1. Two Sum
+
+List<int> twoSum(List<int> nums, int target) {
+  Map<int, int> map = {};
+
+  // 0, 5
+
+  for (int i = 0; i < nums.length; i++) {
+    int needed = target - nums[i];
+    if (map.containsKey(needed)) {
+      return [map[needed]!, i];
+    } else {
+      map[nums[i]] = i;
+    }
+  }
+  return [0, 0];
+}
