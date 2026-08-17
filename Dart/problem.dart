@@ -1865,7 +1865,6 @@ int hammingWeight_1(int n) {
 
 List<int> twoSum(List<int> nums, int target) {
   Map<int, int> map = {};
-
   // 0, 5
 
   for (int i = 0; i < nums.length; i++) {
@@ -1884,13 +1883,41 @@ List<int> twoSum(List<int> nums, int target) {
  */
 int sumOddLengthSubarrays(List<int> arr) {
   int result = 0;
-  for (int i = 0; i < arr.length; i += 2) {
-    for (int j = 0; j < arr.length - i; j++) {
+  for (int i = 1; i <= arr.length; i += 2) {
+    for (int j = 0; j <= arr.length - i; j++) {
       for (int k = j; k < j + i; k++) {
         result += arr[k];
       }
     }
   }
-
   return result;
+}
+
+/*
+2196. Create Binary Tree From Descriptions
+*/
+
+TreeNode? createBinaryTree(List<List<int>> descriptions) {
+  Map<int, TreeNode> map = {};
+  Set<int> children = {};
+  for (int i = 0; i < descriptions.length; i++) {
+    int parentVal = descriptions[i][0];
+    int childVal = descriptions[i][1];
+
+    TreeNode parent = map.putIfAbsent(parentVal, () => TreeNode(parentVal));
+    TreeNode child = map.putIfAbsent(childVal, () => TreeNode(childVal));
+
+    if (descriptions[i][2] == 1) {
+      parent.left = child;
+    } else {
+      parent.right = child;
+    }
+    children.add(childVal);
+  }
+  for (int val in map.keys) {
+    if (!children.contains(val)) {
+      return map[val];
+    }
+  }
+  return null;
 }
