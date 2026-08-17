@@ -1921,3 +1921,27 @@ TreeNode? createBinaryTree(List<List<int>> descriptions) {
   }
   return null;
 }
+
+/*
+950. Reveal Cards In Increasing Order
+
+Time: O(n log n)
+Space: O(n), For The Queue
+*/
+List<int> deckRevealedIncreasing(List<int> deck) {
+  deck.sort();
+
+  List<int> result = [];
+  Queue<int> queue = Queue<int>();
+
+  for (int i = 0; i < deck.length; i++) {
+    queue.add(i);
+  }
+  for (int i = 0; i < deck.length; i++) {
+    result.add(deck[queue.removeFirst()]);
+    if (!queue.isEmpty) {
+      queue.add(queue.removeFirst());
+    }
+  }
+  return result;
+}
