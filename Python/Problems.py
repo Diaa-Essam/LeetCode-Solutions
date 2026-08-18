@@ -38,4 +38,18 @@ class Solution:
             result ^= (i ^ nums[i])
         return result
 
+
+
+# 804. Unique Morse Code Words
+    def uniqueMorseRepresentations(self, words: List[str]) -> int:
+        dictionary = {'a':".-", 'b':"-...", 'c':"-.-.", 'd':"-..", 'e':".", 'f':"..-.", 'g':"--.", 'h':"....", 'i':"..", 'j':".---", 'k':"-.-", 'l':".-..", 'm':"--", 'n':"-.", 'o':"---", 'p':".--.", 'q':"--.-", 'r':".-.", 's':"...", 't':"-", 'u':"..-", 'v':"...-", 'w':".--", 'x':"-..-", 'y':"-.--", 'z':"--.."}
+        transformations = set()
+        for str in words:
+            for i in range(len(str)):
+                transformation += dictionary[str[i]]
+            transformations.add(transformation)
+            transformation = ""
+        return len(transformations)
+
+
         
