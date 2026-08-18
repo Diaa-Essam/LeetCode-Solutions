@@ -29,4 +29,13 @@ class Solution:
             total += arr[i] * odd_count
         
         return total
+
+# 268. Missing Number
+    def missingNumber(self, nums: List[int]) -> int:
+        n = len(nums)
+        result = n
+        for i in range(n):
+            result ^= (i ^ nums[i])
+        return result
+
         
