@@ -1932,16 +1932,88 @@ List<int> deckRevealedIncreasing(List<int> deck) {
   deck.sort();
 
   List<int> result = [];
+  // List<int> result = List.filled(deck.length, 0);
   Queue<int> queue = Queue<int>();
 
   for (int i = 0; i < deck.length; i++) {
     queue.add(i);
   }
   for (int i = 0; i < deck.length; i++) {
-    result.add(deck[queue.removeFirst()]);
+    int index = queue.removeFirst();
+    result.add(deck[i]);
     if (!queue.isEmpty) {
       queue.add(queue.removeFirst());
     }
   }
   return result;
 }
+
+/*
+268. Missing Number
+ */
+
+// int missingNumber(List<int> nums) {
+//   nums.sort();
+//   if(nums.length == 1 && nums[0] == 1 || nums[0] != 0)
+//   {
+//       return 0;
+//   }
+
+//   int n = nums.length;
+//   for(int i = 0; i < nums.length - 1; i++)
+//   {
+//       if(nums[i] + 1 != nums[i + 1])
+//       {
+//           return nums[i] + 1;
+//       }
+//   }
+//   return n;
+// }
+
+// int missingNumber(List<int> nums) {
+//   Set<int> mySet = {};
+//   for (int i = 0; i < nums.length; i++) {
+//     mySet.add(nums[i]);
+//   }
+
+//   for (int i = 0; i <= nums.length; i++) {
+//     if (!mySet.contains(i)) {
+//       return i;
+//     }
+//   }
+//   return 0;
+// }
+
+// int missingNumber(List<int> nums) {
+//   int n = nums.length;
+//   int sumOriginal = (n * (n + 1)) ~/ 2;
+//   int sumCurrent = get_Sum(nums);
+
+//   return sumOriginal - sumCurrent;
+// }
+
+// int get_Sum(List<int> nums) {
+//   int sum = 0;
+//   for (int i = 0; i < nums.length; i++) {
+//     sum += nums[i];
+//   }
+//   return sum;
+// }
+
+
+// int missingNumber(List<int> nums) {
+//   int n = nums.length;
+//   int sumOriginal = (n * (n + 1)) ~/ 2;
+//   int sumCurrent = get_Sum(nums);
+
+//   return sumOriginal - sumCurrent;
+// }
+
+// int get_Sum(List<int> nums) {
+//   int sum = 0;
+//   for (int i = 0; i < nums.length; i++) {
+//     sum += nums[i];
+//   }
+//   return sum;
+// }
+
