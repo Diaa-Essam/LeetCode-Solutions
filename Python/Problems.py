@@ -51,5 +51,54 @@ class Solution:
             transformation = ""
         return len(transformations)
 
+# 2130. Maximum Twin Sum of a Linked List
+    def pairSum(self, head: Optional[ListNode]) -> int:
+        list = []
+        current = head
+        while current is not None:
+            list.append(current.val)
+            current = current.next
+
+        left = 0
+        right = len(list) - 1
+        maxPairSum = 0
+
+        while left < right:
+            if maxPairSum < list[left] + list[right]:
+                maxPairSum = list[left] + list[right]
+            left += 1
+            right -= 1
+        return maxPairSum
+
+
+    
+    def pairSumOptimized(self, head: Optional[ListNode]) -> int:
+        maxPairSum = 0
+        slow = head
+        fast = head
+        while fast != None and fast.next != None:
+            slow = slow.next
+            fast = fast.next.next
+
+        first = head
+        second = self.reverseLinkedList(slow)
+        
+        while second:
+            if (first.val + second.val) > maxPairSum:
+                maxPairSum = first.val + second.val
+            first = first.next
+            second = second.next
+        return maxPairSum
+
+    def reverseLinkedList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        prev = None
+        current = head
+        while current:
+            next_temp = current.next  # Save next
+            current.next = prev       # Reverse
+            prev = current            # Move prev forward
+            current = next_temp       # Move current forward
+        
+        return prev
 
         
