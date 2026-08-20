@@ -101,4 +101,19 @@ class Solution:
         
         return prev
 
+
+
+    def minPairSum(self, nums: List[int]) -> int:
+        nums.sort()
+        left = 0
+        right = len(nums)
+        maxPairSum = 0
+
+        while left < right:
+            pair_sum = nums[left] + nums[right]
+            if pair_sum > maxPairSum:
+                maxPairSum = pair_sum
+        return maxPairSum
+
+
         
