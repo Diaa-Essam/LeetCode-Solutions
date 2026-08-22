@@ -116,4 +116,42 @@ class Solution:
         return maxPairSum
 
 
+# 4020. Elevator Requests I
+    def elevatorRequests(self, n: int, requests: list[int]) -> int:
+        prev = 0
+        result = 0
+        for i in range(len(requests)):
+            current = requests[i]
+            result += abs(current - prev)
+            prev = requests[i]
+        return result
+# 3069. Distribute Elements Into Two Arrays I
+    def resultArray(self, nums: List[int]) -> List[int]:
+        if len(nums) <= 2:
+            return nums
+        arr1 = [nums[0]]
+        arr2 = [nums[1]]
+        p1 = 0
+        p2 = 0
+
+        for i in range(2, len(nums)):
+            if arr1[p1] > arr2[p2]:
+                arr1.append(nums[i])
+                p1 += 1
+            else :
+                arr2.append(nums[i])
+                p2 += 1
+        return arr1 + arr2
+
+
+# 1557. Minimum Number of Vertices to Reach All Nodes
+    def findSmallestSetOfVertices(self, n: int, edges: List[List[int]]) -> List[int]:
+        to_set = {}
+        for i in range(len(edges)):
+            to_set.add(edges[i][1])
+        result = []
+        for i in range(len(edges)):
+            if edges[i][0] not in to_set:
+                result.append(edges[i][0])
+        return result
         
