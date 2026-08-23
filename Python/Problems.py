@@ -16,7 +16,7 @@ class Solution:
         
         return answer
 
-    # 1588. Sum of All Odd Length Subarrays
+# 1588. Sum of All Odd Length Subarrays
     def sumOddLengthSubarrays(self, arr: List[int]) -> int:
         n = len(arr)
         total = 0
@@ -146,12 +146,24 @@ class Solution:
 
 # 1557. Minimum Number of Vertices to Reach All Nodes
     def findSmallestSetOfVertices(self, n: int, edges: List[List[int]]) -> List[int]:
-        to_set = {}
+        has_incoming = set()
         for i in range(len(edges)):
-            to_set.add(edges[i][1])
+            has_incoming.add(edges[i][1])
         result = []
-        for i in range(len(edges)):
-            if edges[i][0] not in to_set:
-                result.append(edges[i][0])
+        for i in range(n):
+            if i not in has_incoming:
+                result.append(i)
         return result
-        
+
+
+# 3622. Check Divisibility by Digit Sum and Product
+    def checkDivisibility(self, n: int) -> bool:
+        sum_of_digits = 0
+        product_of_digits = 0
+        num = n
+
+        while num > 0:
+            sum_of_digits += num % 10
+            product_of_digits *= num % 10
+            num //= 10
+        return n % (sum_of_digits + product_of_digits) == 0
