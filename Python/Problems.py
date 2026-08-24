@@ -167,3 +167,38 @@ class Solution:
             product_of_digits *= num % 10
             num //= 10
         return n % (sum_of_digits + product_of_digits) == 0
+
+# 2685. Count the Number of Complete Components
+
+    def countCompleteComponents(self, n: int, edges: List[List[int]]) -> int:
+        visited = set()
+        count = 0
+
+        adj = [[] for _i in range(n)]
+        for u, v in edges:
+            adj[u].append(v)
+            adj[v].append(u)
+
+        # Nested function "dfs" is needed only inside "countCompleteComponents"
+        def dfs(node, component):
+            visited.add(node)
+            component.append(node)
+            for neighbor in adj[node]:
+                if neighbor not in visited:
+                    dfs(neighbor, component)
+
+        for i in range(n):
+            if i not in visited:
+                component = []
+                dfs(i, component)
+                k = len(component)
+                edge_count = 0
+
+                for node in component:
+                    edge_count += len(adj[node])
+                edge_count //= 2
+
+                if edge_count == k * (k - 1) // 2:
+                    count += 1
+        return count
+                
