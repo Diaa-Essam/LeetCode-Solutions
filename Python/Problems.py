@@ -213,4 +213,36 @@ class Solution:
                     dfs(key)
         dfs(0)
         return len(visited) == len(rooms)
-                
+
+
+# 1334. Find the City With the Smallest Number of Neighbors at a Threshold Distance
+    def findTheCity(self, n: int, edges: List[List[int]], distanceThreshold: int) -> int:
+        result = n
+
+        INF = 10 ** 9
+        dist = [[INF] * n for _ in range(n)]
+
+        for i in range(n):
+            dist[i][i] = 0
+
+        for u, v, w in edges:
+            dist[u][v] = w
+            dist[v][u] = w
+
+        for k in range(n):
+            for j in range(n):
+                for i in range(n):
+                    if dist[i][j] > dist[i][k] + dist[k][j]:
+                        dist[i][j] = dist[i][k] + dist[k][j]
+
+        best_count = n
+        for i in range(n - 1, -1, -1):
+            current_count = 0
+            for j in range(n):
+                if i != j and dist[i][j] <= distanceThreshold and dist[i][j] != INF:
+                    current_count += 1
+            if best_count > current_count:
+                best_count = current_count
+                result = i
+
+        return result
