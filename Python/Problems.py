@@ -246,3 +246,5 @@ class Solution:
                 result = i
 
         return result
+
+# 1584. Min Cost to Connect All Points
