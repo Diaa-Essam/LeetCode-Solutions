@@ -248,3 +248,47 @@ class Solution:
         return result
 
 # 1584. Min Cost to Connect All Points
+
+    def minCostConnectPoints(self, points: List[List[int]]) -> int:
+
+        n = len(points)
+        edges = []
+
+        def manhattan(p1, p2):
+            return abs(p1[0] - p2[0]) + abs(p1[1] - p2[1])
+
+        for i in range(n):
+            for j in range(i + 1, n):
+                w = self.manhattan(points[i], points[j])
+                edges.append((w, i, j))
+
+
+        edges.sort()  # Sort by weight
+        parent = list(range(n))
+
+        # Helper Functions
+        def find(x):
+            if parent[x] != x:
+                parent[x] = find(parent[x])
+            return parent[x]
+        
+
+        def union(x, y):
+            px, py = find(x), find(y)
+            if px == py:
+                return False
+            parent[px] = py
+
+            return True
+
+        edges_used = 0
+        result = 0
+
+        for w, u, v in edges:
+            if union(u, v):
+                result += w
+                edges_used += 1
+                if edges_used == n - 1:
+                    break
+        return result
+
