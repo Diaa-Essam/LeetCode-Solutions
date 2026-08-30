@@ -292,3 +292,30 @@ class Solution:
                     break
         return result
 
+
+
+#994. Rotting Oranges
+    def orangesRotting(self, grid: List[List[int]]) -> int:
+        q = deque()
+        minutes = 0
+        fresh = 0
+
+        for i in range(len(grid)):
+            for j in range(len(grid[i])):
+                if grid[i][j] == 1:
+                    fresh += 1
+                if grid[i][j] == 2:
+                    q.append((i, j))
+
+        while fresh > 0 and len(q) > 0:
+            for i in range(len(q)):
+                r, c = q.popleft()
+                neighbors = [(r + 1, c), (r - 1, c), (r, c + 1), (r, c - 1)]
+                for nr, nc in neighbors:
+                    if nr in range(len(grid)) and nc in range(len(grid[0])) and grid[nr][nc] == 1:
+                        grid[nr][nc] = 2
+                        fresh -= 1
+                        q.append((nr,nc))
+            minutes += 1
+        return minutes if fresh == 0 else -1
+
