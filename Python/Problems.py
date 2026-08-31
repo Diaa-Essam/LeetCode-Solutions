@@ -319,3 +319,25 @@ class Solution:
             minutes += 1
         return minutes if fresh == 0 else -1
 
+
+
+    # 3731. Find Missing Elements
+    def findMissingElements(self, nums: List[int]) -> List[int]:
+        min = 10 ** 9
+        max = 0
+        nums_set = set(nums)
+
+        for i in range(len(nums)):
+            if max < nums[i]:
+                max = nums[i]
+            if min > nums[i]:
+                min = nums[i]
+
+        result = []
+
+        for i in range(min, max + 1, 1):
+            if i not in nums_set:
+                result.append(i)
+
+
+        return result
