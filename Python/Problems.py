@@ -342,5 +342,20 @@ class Solution:
 
         return result
 
+    # 141. Linked List Cycle
+    def hasCycle(self, head: Optional[ListNode]) -> bool:
+        slow = head
+        fast = head
+
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+
+            if fast == slow:
+                return True
+
+        return False
+
+
 # 802. Find Eventual Safe States
     
