@@ -356,6 +356,21 @@ class Solution:
 
         return False
 
+    # 338. Counting Bits
+    def countBits(self, n: int) -> List[int]:
+        result = []
+        # O(n)
+        for i in range(n + 1):
+            current = i
+            count = 0
+            while current > 0:
+                if current & 1 == 1:
+                    count += 1
+                current = current >> 1
+            result.append(count)
+        
+        return result
+
 
 # 802. Find Eventual Safe States
     
