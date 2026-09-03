@@ -1,8 +1,10 @@
-# 1829. Maximum XOR for Each Query
-# Time: O(n)
-# Space: O(n)
+
 
 class Solution:
+
+    # 1829. Maximum XOR for Each Query
+    # Time: O(n)
+    # Space: O(n)
     def getMaximumXor(self, nums: List[int], maximumBit: int) -> List[int]:
         xor = 0
         for n in nums:
@@ -373,4 +375,25 @@ class Solution:
 
 
 # 802. Find Eventual Safe States
+    def eventualSafeNodes(self, graph: List[List[int]]) -> List[int]:
+        n = len(graph)
+        state = [0] * n
+
+        def is_safe(node):
+            if state[node] != 0:
+                return state[node] == 2
+            
+            state[node] = 1
+            for neighbor in graph[node]:
+                if not is_safe(neighbor):
+                    return False
+            state[node] = 2
+            return True
+
+        result = []
+        for i in range(n):
+            if is_safe(i):
+                result.append(i)
+        return result
+
     
