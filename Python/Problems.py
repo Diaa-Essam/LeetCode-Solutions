@@ -396,4 +396,7 @@ class Solution:
                 result.append(i)
         return result
 
+
+# 2392. Build a matrix with conditions
+
     
