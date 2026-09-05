@@ -399,4 +399,40 @@ class Solution:
 
 # 2392. Build a matrix with conditions
 
+
+    def topological_sort(k, conditions):
+        graph = [[] for _ in range(k + 1)]  # 1-indexed
+        indegree = [0] * (k + 1)
+        
+        for u, v in conditions:
+            graph[u].append(v)
+            indegree[v] += 1
+        
+        q = deque([i for i in range(1, k + 1) if indegree[i] == 0])
+        order = []
+        
+        while q:
+            node = q.popleft()
+            order.append(node)
+            for neighbor in graph[node]:
+                indegree[neighbor] -= 1
+                if indegree[neighbor] == 0:
+                    q.append(neighbor)
+        
+        return order if len(order) == k else []
+
+    def buildMatrix(self, k: int, rowConditions: List[List[int]], colConditions: List[List[int]]) -> List[List[int]]:
+        row_order = topological_sort(k, rowConditions)
+        col_order = topological_sort(k, colConditions)
+
+        matrix = [[0] * k for _ in range(k)]
+
+        for num in range(1, k + 1):
+            row = row_order.index(num)
+            col = col_order.index(num)
+
+            matrix[row][col] = num
+
+        return matrix
+
     
